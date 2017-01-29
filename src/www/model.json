@@ -1,0 +1,30 @@
+{
+  "code": "0045",
+  "name": "Golden Ring",
+  "params": [
+    {
+      "name": "param_1",
+      "label": "Param N1",
+      "type": "Number",
+      "min": 10,
+      "max": 150,
+      "step": 1,
+      "value": 77
+    },
+    {
+      "name": "param_2",
+      "label": "Param N2",
+      "type": "Number",
+      "min": 10,
+      "max": 150,
+      "step": 1,
+      "value": 77
+    },
+    {
+      "name": "param_3",
+      "label": "Param N3",
+      "type": "String",
+      "value": "Some Text Hear"
+    }
+  ]
+}

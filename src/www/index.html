@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>3D</title>
+    <meta name="description" content="pick from spiderslab.com">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0, maximum-scale=1, minimum-scale=1">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap-theme.min.css">
+
+    <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body>
+<div id="app"></div>
+
+<script>
+    var WebFontConfig = {
+        google: {families: ['Roboto:400,300,500:latin']}
+    };
+    (function () {
+        var wf = document.createElement('script');
+        wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+        wf.type = 'text/javascript';
+        wf.async = 'true';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(wf, s);
+    })();
+</script>
+<script type="text/javascript" src="three.min.js"></script>
+<script type="text/javascript" src="STLLoader.js"></script>
+<script type="text/javascript" src="OrbitControls.js"></script>
+<script src="app.js"></script>
+
+</body>
+
+</html>
