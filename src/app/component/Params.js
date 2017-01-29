@@ -14,9 +14,22 @@ export class Params extends React.Component {
 
 
     changeValue(value, i) {
+        if (this.params[i].type === "Number") {
+            value = parseFloat(value);
+            if (value < this.params[i].min) {
+                value = this.params[i].min;
+            }
+            if (value > this.params[i].max) {
+                value = this.params[i].max;
+            }
+            if (isNaN(value)) {
+                value = this.params[i].value;
+            }
+        }
         this.params[i].value = value;
+
         console.log(this.params[i].value);
-        this.setState({random: Math.random()});
+        this.setState({});
     }
 
     render() {
@@ -50,6 +63,7 @@ export class Params extends React.Component {
                     <TextField
                         style={{width: "100%"}}
                         value={param.value}
+                        defaultValue={param.value}
                         onChange={(e, value) => this.changeValue(value, i)}
                     />
                 </Col>
@@ -64,6 +78,7 @@ export class Params extends React.Component {
                     <TextField
                         style={{width: "100%"}}
                         value={param.value}
+                        defaultValue={param.value}
                         onChange={(e, value) => this.changeValue(value, i)}
                     />
                 </Col>

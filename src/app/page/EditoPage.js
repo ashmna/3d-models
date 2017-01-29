@@ -2,6 +2,7 @@ import React from "react";
 import {ModelService} from "../service/ModelService";
 import {Row, Col} from "react-bootstrap";
 import {Params} from "../component/Params";
+import $ from "jquery"
 
 
 export class EditorPage extends React.Component {
@@ -113,7 +114,9 @@ export class EditorPage extends React.Component {
             renderer = new THREE.WebGLRenderer( { antialias: true } );
             renderer.setClearColor( scene.fog.color );
             renderer.setPixelRatio( window.devicePixelRatio );
-            renderer.setSize( window.innerWidth  / 2 , window.innerHeight / 2 );
+            var width = $("#editor").innerWidth();
+            var height = window.innerHeight / 4 * 3;
+            renderer.setSize(width, height);
             renderer.gammaInput = true;
             renderer.gammaOutput = true;
             renderer.shadowMap.enabled = true;
@@ -144,9 +147,11 @@ export class EditorPage extends React.Component {
             directionalLight.shadow.bias = -0.005;
         }
         function onWindowResize() {
-            camera.aspect = window.innerWidth / window.innerHeight;
+            var width = $("#editor").innerWidth();
+            var height = window.innerHeight / 4 * 3;
+            camera.aspect = width / height;
             camera.updateProjectionMatrix();
-            renderer.setSize( window.innerWidth  / 2 , window.innerHeight / 2 );
+            renderer.setSize( width, height );
         }
         function animate() {
             // requestAnimationFrame( animate );
