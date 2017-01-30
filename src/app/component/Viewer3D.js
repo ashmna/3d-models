@@ -14,6 +14,7 @@ export class Viewer3D extends React.Component {
         // this.scene;
         // this.renderer;
         // this.cameraControls;
+        this.lastLoadedMesh = null;
     }
 
     componentDidMount() {
@@ -31,10 +32,30 @@ export class Viewer3D extends React.Component {
 
     threeRender() {
         // let timer = Date.now() * 0.00001;
-        // camera.position.x = Math.cos( timer ) * 3;
-        // camera.position.z = Math.sin( timer ) * 3;
-        // camera.lookAt( cameraTarget );
+        // this.camera.position.x = Math.cos( timer ) * 3;
+        // this.camera.position.z = Math.sin( timer ) * 3;
+        this.camera.lookAt(this.cameraTarget);
         this.renderer.render(this.scene, this.camera);
+    }
+
+    loadStl(fileName) {
+        let loader = new THREE.STLLoader();
+        loader.load(fileName, (geometry) => {
+            if (this.lastLoadedMesh) {
+                this.scene.remove(this.lastLoadedMesh);
+            }
+            let material = new THREE.MeshPhongMaterial( { color: 0x00FF00, specular: 0xFFFFFF, shininess: 0 } );
+            // let wireMaterial = new THREE.MeshBasicMaterial({color: 0xFFFFFF, wireframe: true});
+            let mesh = new THREE.Mesh(geometry, material);
+            // mesh.position.set( 0, - 0.25, 0.6 );
+            mesh.rotation.set(-Math.PI / 2, 0, 0);
+            mesh.scale.set(0.02, 0.02, 0.02);
+            mesh.castShadow = true;
+            mesh.receiveShadow = true;
+            this.scene.add(mesh);
+            this.lastLoadedMesh = mesh;
+        });
+        this.threeRender();
     }
 
 
@@ -55,20 +76,7 @@ export class Viewer3D extends React.Component {
         plane.position.y = -0.5;
         this.scene.add(plane);
         plane.receiveShadow = true;
-        // ASCII file
-        let loader = new THREE.STLLoader();
-        loader.load('0103070090118.stl', (geometry) => {
-            // let material = new THREE.MeshPhongMaterial( { color: 0x00FF00, specular: 0xFFFFFF, shininess: 0 } );
-            let wireMaterial = new THREE.MeshBasicMaterial({color: 0xFFFFFF, wireframe: true});
-            let mesh = new THREE.Mesh(geometry, wireMaterial);
-            // mesh.position.set( 0, - 0.25, 0.6 );
-            mesh.rotation.set(-Math.PI / 2, 0, 0);
-            mesh.scale.set(0.02, 0.02, 0.02);
-            mesh.castShadow = true;
-            mesh.receiveShadow = true;
-            let res = this.scene.add(mesh);
-            console.log('scene.add.mesh', res);
-        });
+
         // Binary files
         /*
          let material = new THREE.MeshPhongMaterial( { color: 0xAAAAAA, specular: 0x111111, shininess: 200 } );
@@ -154,6 +162,7 @@ export class Viewer3D extends React.Component {
         this.camera.aspect = width / height;
         this.camera.updateProjectionMatrix();
         this.renderer.setSize(width, height);
+        this.threeRender();
     }
 
 

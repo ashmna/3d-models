@@ -30,13 +30,20 @@ export class EditorPage extends React.Component {
         this.modelService
             .generateModel(code, params)
             .then(data => {
+                this.refs.viewer.loadStl(data.file);
                 console.log(data)
             });
     }
 
+    componentDidMount() {
+        setTimeout(() => {
+            this.refs.viewer.loadStl("0103070090118.stl");
+        }, 100);
+    }
+
     render() {
         if (this.state.loading) {
-            return (<h1>Loading......</h1>);
+            return (<h1>Loading...</h1>);
         }
         return (
             <Row>

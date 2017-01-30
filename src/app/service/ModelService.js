@@ -17,7 +17,7 @@ export class ModelService {
     }
 
     generateModel(modelCode, params) {
-        var data = {
+        const data = {
             code: modelCode,
             params: params,
         };
