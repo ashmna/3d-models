@@ -12,6 +12,13 @@ export class Params extends React.Component {
         this.params = props.params;
     }
 
+    getParams() {
+        let params = {};
+        this.params.forEach(param => {
+            params[param.name] = param.value;
+        });
+        return params;
+    }
 
     changeValue(value, i) {
         if (this.params[i].type === "Number") {
@@ -28,7 +35,6 @@ export class Params extends React.Component {
         }
         this.params[i].value = value;
 
-        console.log(this.params[i].value);
         this.setState({});
     }
 
@@ -61,8 +67,9 @@ export class Params extends React.Component {
                 </Col>
                 <Col xs={2}>
                     <TextField
+                        id={param.name}
+                        name={param.name}
                         style={{width: "100%"}}
-                        value={param.value}
                         defaultValue={param.value}
                         onChange={(e, value) => this.changeValue(value, i)}
                     />
@@ -76,8 +83,9 @@ export class Params extends React.Component {
             <Row key={i}>
                 <Col xs={12}>
                     <TextField
+                        id={param.name}
+                        name={param.name}
                         style={{width: "100%"}}
-                        value={param.value}
                         defaultValue={param.value}
                         onChange={(e, value) => this.changeValue(value, i)}
                     />

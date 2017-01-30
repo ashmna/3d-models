@@ -15,4 +15,22 @@ export class ModelService {
                 .fail(reject);
         });
     }
+
+    generateModel(modelCode, params) {
+        var data = {
+            code: modelCode,
+            params: params,
+        };
+        return new Promise((resolve, reject) => {
+            ajax({
+                method: "POST",
+                url: "http://localhost:3003/generate-model",
+                type: "jsonp",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(data)
+            })
+                .done(resolve)
+                .fail(reject);
+        });
+    }
 }
