@@ -30,7 +30,7 @@ export class EditorPage extends React.Component {
         this.modelService
             .generateModel(code, params)
             .then(data => {
-                this.refs.viewer.loadStl(data.file);
+                this.refs.viewer.loadStl('http://localhost:3003/' + data.file);
                 console.log(data)
             });
     }

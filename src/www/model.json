@@ -3,28 +3,31 @@
   "name": "Golden Ring",
   "params": [
     {
-      "name": "param_1",
-      "label": "Param N1",
+      "name": "Param_X",
+      "label": "Param_X",
       "type": "Number",
       "min": 10,
-      "max": 150,
+      "max": 20,
       "step": 1,
-      "value": 77
+      "value": 15
     },
-    {
-      "name": "param_2",
-      "label": "Param N2",
+      {
+      "name": "Param_Y",
+      "label": "Param_Y",
       "type": "Number",
       "min": 10,
-      "max": 150,
+      "max": 20,
       "step": 1,
-      "value": 77
+      "value": 15
     },
-    {
-      "name": "param_3",
-      "label": "Param N3",
-      "type": "String",
-      "value": "Some Text Hear"
+      {
+      "name": "Param_Z",
+      "label": "Param_Z",
+      "type": "Number",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "value": 15
     }
   ]
 }
