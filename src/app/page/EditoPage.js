@@ -56,7 +56,7 @@ export class EditorPage extends React.Component {
                             <Params ref="params" params={this.modelData.params}/>
                         </Col>
                         <Col xs={12}>
-                            <RaisedButton label="Generate" onTouchTap={() => this.generateModelByParams()}/>
+                            <RaisedButton label="Generate" onTouchTap={this.generateModelByParams.bind(this)}/>
                         </Col>
                     </Row>
                 </Col>
