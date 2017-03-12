@@ -6,20 +6,27 @@ export class Params extends React.Component {
 
     constructor(props, context) {
         super(props, context);
-        this.state = {};
-        this.params = props.params;
+        this.state = {
+            parapets: props.parapets,
+        };
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            parapets: nextProps.parapets,
+        });
     }
 
     getParams() {
-        let params = {};
-        this.params.forEach(param => {
-            params[param.name] = param.value;
-        });
-        return params;
+        // let params = {};
+        // this.params.forEach(param => {
+        //     params[param.name] = param.value;
+        // });
+        // return params;
     }
 
     render() {
-        const params = this.params.map((param, i) => {
+        const params = this.state.parapets.map((param, i) => {
             if (param.type === "Number") {
                 return (<ParamNumber key={i} param={param}/>);
             } else if (param.type === "String") {

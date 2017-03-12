@@ -2,8 +2,9 @@ import React from "react";
 import ReactDom from "react-dom";
 import injectTapEventPlugin from "react-tap-event-plugin";
 import {Router, IndexRoute, Route, hashHistory} from "react-router";
-import {Dashboard} from "./Dashboard";
-import {EditorPage} from "./page/EditoPage";
+import {Front} from "./Front";
+import {Builder} from "./front-component/Builder";
+import {ChooseModel} from "./front-component/ChooseModel";
 
 injectTapEventPlugin();
 
@@ -17,9 +18,9 @@ injectTapEventPlugin();
 
 ReactDom.render(
     <Router history={hashHistory}>
-        <Route path="/" component={Dashboard}>
-            <IndexRoute component={EditorPage}/>
-            <Route path="editor" component={EditorPage}/>
+        <Route path="/" component={Front}>
+            <IndexRoute  component={ChooseModel}/>
+            <Route path="/:modelCode" component={Builder}/>
         </Route>
     </Router>,
     document.getElementById("app")

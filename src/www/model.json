@@ -11,7 +11,7 @@
       "step": 1,
       "value": 15
     },
-      {
+    {
       "name": "Param_Y",
       "label": "Param_Y",
       "type": "Number",
@@ -20,7 +20,7 @@
       "step": 1,
       "value": 15
     },
-      {
+    {
       "name": "Param_Z",
       "label": "Param_Z",
       "type": "Number",
@@ -28,6 +28,20 @@
       "max": 20,
       "step": 1,
       "value": 15
+    }
+  ],
+  "steps": [
+    {
+      "label": "Steps 1",
+      "params": ["Param_Y"]
+    },
+    {
+      "label": "Steps 2",
+      "params": ["Param_Z"]
+    },
+    {
+      "label": "Steps 3",
+      "params": ["Param_X"]
     }
   ]
 }

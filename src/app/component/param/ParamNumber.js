@@ -15,6 +15,14 @@ export class ParamNumber extends React.Component {
         };
     }
 
+    componentWillReceiveProps(nextProps) {
+        this.data = nextProps.param;
+        this.setState({
+            sliderValue: this.data.value,
+            textValue: this.data.value,
+        });
+    }
+
     changeValue(value) {
         value = parseFloat(value);
         if (value < this.data.min) {
@@ -49,6 +57,9 @@ export class ParamNumber extends React.Component {
     render() {
         return (
             <Row>
+                <Col xs={12}>
+                    <label>{this.data.label}</label>
+                </Col>
                 <Col xs={10}>
                     <Slider ref="slider"
                             value={this.state.sliderValue}

@@ -66,7 +66,7 @@ export class Viewer3D extends React.Component {
         this.camera.position.set(3, 0.15, 3);
         this.cameraTarget = new THREE.Vector3(0, -0.25, 0);
         this.scene = new THREE.Scene();
-        this.scene.fog = new THREE.Fog(0x72645b, 2, 15);
+        //this.scene.fog = new THREE.Fog(0x72645b, 2, 15);
         // Ground
         let plane = new THREE.Mesh(
             new THREE.PlaneBufferGeometry(40, 40),
@@ -120,7 +120,7 @@ export class Viewer3D extends React.Component {
 
         // renderer
         this.renderer = new THREE.WebGLRenderer({antialias: true});
-        this.renderer.setClearColor(this.scene.fog.color);
+        //this.renderer.setClearColor(this.scene.fog.color);
         this.renderer.setPixelRatio(window.devicePixelRatio);
         let width = $("#viewer-3d").innerWidth();
         let height = window.innerHeight / 4 * 3;

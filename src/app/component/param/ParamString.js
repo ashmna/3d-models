@@ -13,6 +13,13 @@ export class ParamString extends React.Component {
         };
     }
 
+    componentWillReceiveProps(nextProps) {
+        this.data = nextProps.param;
+        this.setState({
+            textValue: this.data.value,
+        });
+    }
+
     changeValue(event, value) {
         this.data.value = value;
         this.setState({
@@ -23,6 +30,9 @@ export class ParamString extends React.Component {
     render() {
         return (
             <Row>
+                <Col xs={12}>
+                    <label>{this.data.label}</label>
+                </Col>
                 <Col xs={12}>
                     <TextField ref="text"
                                id={this.data.name}
