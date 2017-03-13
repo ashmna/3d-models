@@ -1,0 +1,104 @@
+{
+    "code": "00002",
+    "name": "Ring",
+    "params": [
+        {
+            "name": "R_Top",
+            "label": "R Top",
+            "type": "Number",
+            "min": 1,
+            "max": 8,
+            "step": 1,
+            "value": 1
+        },
+        {
+            "name": "H",
+            "label": "H",
+            "type": "Number",
+            "min": 7,
+            "max": 20,
+            "step": 1,
+            "value": 15
+        },
+        {
+            "name": "R_Under",
+            "label": "R Under",
+            "type": "Number",
+            "min": 0,
+            "max": 8,
+            "step": 1,
+            "value": 4
+        },
+        {
+            "name": "Finger_Size",
+            "label": "Finger Size",
+            "type": "Number",
+            "min": 5,
+            "max": 11,
+            "step": 1,
+            "value": 8
+        },
+        {
+            "name": "Wall_Thickness",
+            "label": "Wall Thickness",
+            "type": "Number",
+            "min": 0.5,
+            "max": 2,
+            "step": 0.1,
+            "value": 1.0
+        },
+        {
+            "name": "Slice_Width",
+            "label": "Slice Width",
+            "type": "Number",
+            "min": 0.5,
+            "max": 4,
+            "step": 0.5,
+            "value": 1.0
+        },
+        {
+            "name": "Text_Width",
+            "label": "Text Width",
+            "type": "Number",
+            "min": 2,
+            "max": 7,
+            "step": 1,
+            "value": 4
+        },
+        {
+            "name": "Slice_Height",
+            "label": "Slice Height",
+            "type": "Number",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "value": 18
+        },
+        {
+            "name": "Text",
+            "label": "Text",
+            "type": "String",
+            "value": "Ani"
+        },
+        {
+            "name": "Font",
+            "label": "Font TODO: use select",
+            "type": "String",
+            "value": "Some Font TODO"
+        }
+    ],
+    "steps": [
+        {
+            "label": "Steps 1",
+            "params": ["Text", "Font", "Text_Width", "Finger_Size"]
+        },
+        {
+            "label": "Steps 2",
+            "params": ["R_Top", "H", "R_Under", "Wall_Thickness"]
+        },
+        {
+            "label": "Steps 3",
+            "params": ["Slice_Width", "Slice_Height"]
+        }
+    ]
+}

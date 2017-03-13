@@ -5,7 +5,7 @@ machine:
     version: 7.3.0
   environment:
     DOCKER_CERT_PATH: .cloud_hero
-    DOCKER_HOST: tcp://swarm3541.chapi.co:8443
+    DOCKER_HOST: tcp://swarm3856.chapi.co:8443
     DOCKER_TLS_VERIFY: 1
 
 dependencies:
@@ -30,4 +30,4 @@ deployment:
       - docker rm 3d-models
       - docker rmi 3d-models:v0.1
       - docker build -t 3d-models:v0.1 .
-      - docker run --name 3d-models -p 8082:80 -t 3d-models:v0.1
+      - docker run --name 3d-models -p 80:80 -t 3d-models:v0.1
