@@ -82,9 +82,15 @@
         },
         {
             "name": "Font",
-            "label": "Font TODO: use select",
-            "type": "String",
-            "value": "Some Font TODO"
+            "label": "Font",
+            "type": "Select",
+            "value": "Some font 3",
+            "options" : [
+                {"value": "Some font 1", "text": "Some font 1"},
+                {"value": "Some font 2", "text": "Some font 2"},
+                {"value": "Some font 3", "text": "Some font 3"},
+                {"value": "Some font 4", "text": "Some font 4"}
+            ]
         }
     ],
     "steps": [

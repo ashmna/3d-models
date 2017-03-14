@@ -37,7 +37,7 @@ export class ParamString extends React.Component {
                     <TextField ref="text"
                                id={this.data.name}
                                name={this.data.name}
-                               style={{width: "100%"}}
+                               fullWidth={true}
                                value={this.state.textValue}
                                onChange={this.changeValue.bind(this)}
                     />

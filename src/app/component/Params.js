@@ -1,6 +1,7 @@
 import React from "react";
 import {ParamNumber} from "./param/ParamNumber";
 import {ParamString} from "./param/ParamString";
+import {ParamSelect} from "./param/ParamSelect";
 
 export class Params extends React.Component {
 
@@ -31,6 +32,8 @@ export class Params extends React.Component {
                 return (<ParamNumber key={i} param={param}/>);
             } else if (param.type === "String") {
                 return (<ParamString key={i} param={param}/>);
+            } else if (param.type === "Select") {
+                return (<ParamSelect key={i} param={param}/>);
             }
         });
         return (
