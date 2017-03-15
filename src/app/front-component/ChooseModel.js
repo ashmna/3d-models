@@ -29,11 +29,23 @@ export class ChooseModel extends React.Component {
         });
     }
 
+    handelChangeIndex(newIndex, oldIndex) {
+        if (newIndex === 0) {
+            CONFIG.changeBgColor("#d33f34", "#a61322");
+        }
+        if (newIndex === 1) {
+            CONFIG.changeBgColor("#87B3D3", "#0F78D3");
+        }
+        if (newIndex === 2) {
+            CONFIG.changeBgColor("#FFCD55", "#A6920B");
+        }
+    }
+
     render() {
         return (
             <Row>
                 <Col xs={12}>
-                    <SwipeableViews>
+                    <SwipeableViews onChangeIndex={this.handelChangeIndex.bind(this)}>
                         <div>
                             <img src="/images/model_0001.jpg" className="img-responsive center-block"/>
                         </div>

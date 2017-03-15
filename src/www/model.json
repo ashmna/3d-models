@@ -1,6 +1,7 @@
 {
   "code": "00002",
   "name": "Ring",
+  "color": "lime",
   "params": [
     {
       "name": "R_Top",

@@ -21,6 +21,7 @@ export class Builder extends React.Component {
         this.modelService.getModelData(this.props.params["modelCode"])
             .then(modelData => {
                 this.modelData = modelData;
+                CONFIG.setThemByName(this.modelData.color);
                 this.setState({loading: false});
             })
             .catch(err => {
