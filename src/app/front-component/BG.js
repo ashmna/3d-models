@@ -15,7 +15,7 @@ const style = {
         left: "0",
         top: "0",
         background: 'linear-gradient(15deg, #d33f34 50%, #a61322 50.1%)',
-        transition: 'all 1.4s',
+        transition: 'all .8s linear',
     },
     second: {
         position: "fixed",
@@ -24,7 +24,7 @@ const style = {
         left: "0",
         top: "0",
         background: 'linear-gradient(15deg, #d33f34 50%, #a61322 50.1%)',
-        transition: 'all 1.4s',
+        transition: 'all .8s linear',
     }
 };
 
