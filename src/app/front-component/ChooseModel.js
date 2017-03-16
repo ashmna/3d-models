@@ -1,10 +1,8 @@
 import * as React from "react";
 import {Row, Col} from "react-bootstrap";
 import RaisedButton from "material-ui/RaisedButton";
-import SwipeableViews from 'react-swipeable-views';
-import {Builder} from './Builder';
+import SwipeableViews from "react-swipeable-views";
 import {Link} from "react-router";
-
 
 
 export class ChooseModel extends React.Component {
@@ -58,7 +56,7 @@ export class ChooseModel extends React.Component {
 
                     </SwipeableViews>
                     <Link to="/0001" className="pull-right">
-                        <RaisedButton label="Customize" />
+                        <RaisedButton label="Customize"/>
                     </Link>
                 </Col>
             </Row>

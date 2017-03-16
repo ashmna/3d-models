@@ -3,7 +3,7 @@ import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import lightBaseTheme from "material-ui/styles/baseThemes/lightBaseTheme";
 import getMuiTheme from "material-ui/styles/getMuiTheme";
 import {BG} from "./front-component/BG";
-import * as colors from 'material-ui/styles/colors';
+import * as colors from "material-ui/styles/colors";
 
 
 const style = {

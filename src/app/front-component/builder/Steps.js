@@ -1,10 +1,6 @@
 import * as React from "react";
 import {Row, Col} from "react-bootstrap";
-import {
-    Step,
-    Stepper,
-    StepLabel,
-} from "material-ui/Stepper";
+import {Step, Stepper, StepLabel} from "material-ui/Stepper";
 import RaisedButton from "material-ui/RaisedButton";
 import FlatButton from "material-ui/FlatButton";
 import {StepContent} from "./StepContent";

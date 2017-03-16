@@ -60,8 +60,8 @@ export class BG extends React.Component {
             this.key = key;
             this.setState({
                 view: this.state.view === "first" ? "second" : "first",
-                color1: color1 ,
-                color2: color2 ,
+                color1: color1,
+                color2: color2,
             });
         }
     }

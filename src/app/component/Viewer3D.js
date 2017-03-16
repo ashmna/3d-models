@@ -24,7 +24,6 @@ export class Viewer3D extends React.Component {
     }
 
 
-
     animate() {
         // requestAnimationFrame( animate );
         this.threeRender();
@@ -44,7 +43,7 @@ export class Viewer3D extends React.Component {
             if (this.lastLoadedMesh) {
                 this.scene.remove(this.lastLoadedMesh);
             }
-            let material = new THREE.MeshPhongMaterial( { color: 0x00FF00, specular: 0xFFFFFF, shininess: 0 } );
+            let material = new THREE.MeshPhongMaterial({color: 0x00FF00, specular: 0xFFFFFF, shininess: 0});
             // let wireMaterial = new THREE.MeshBasicMaterial({color: 0xFFFFFF, wireframe: true});
             let mesh = new THREE.Mesh(geometry, material);
             // mesh.position.set( 0, - 0.25, 0.6 );

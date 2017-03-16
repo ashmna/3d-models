@@ -15,11 +15,10 @@ injectTapEventPlugin();
 // </Route>
 
 
-
 ReactDom.render(
     <Router history={hashHistory}>
         <Route path="/" component={Front}>
-            <IndexRoute  component={ChooseModel}/>
+            <IndexRoute component={ChooseModel}/>
             <Route path="/:modelCode" component={Builder}/>
         </Route>
     </Router>,

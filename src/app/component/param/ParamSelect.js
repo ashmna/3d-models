@@ -1,7 +1,7 @@
 import React from "react";
 import {Row, Col} from "react-bootstrap";
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
+import SelectField from "material-ui/SelectField";
+import MenuItem from "material-ui/MenuItem";
 
 export class ParamSelect extends React.Component {
 

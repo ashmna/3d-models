@@ -3,7 +3,7 @@ import {Row, Col} from "react-bootstrap";
 import {ModelService} from "../service/ModelService";
 import {Steps} from "./builder/Steps";
 import {Link} from "react-router";
-
+import * as colors from "material-ui/styles/colors";
 
 export class Builder extends React.Component {
 
@@ -22,6 +22,7 @@ export class Builder extends React.Component {
             .then(modelData => {
                 this.modelData = modelData;
                 CONFIG.setThemByName(this.modelData.color);
+                CONFIG.changeBgColor(colors[this.modelData.color + '200'], colors[this.modelData.color + '600']);
                 this.setState({loading: false});
             })
             .catch(err => {
