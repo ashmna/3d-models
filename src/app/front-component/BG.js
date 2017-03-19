@@ -51,7 +51,7 @@ export class BG extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        this.changeBgColor(nextProps.color1, nextProps.color2);
+        // this.changeBgColor(nextProps.color1, nextProps.color2);
     }
 
     changeBgColor(color1, color2) {

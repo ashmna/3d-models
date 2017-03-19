@@ -14,11 +14,18 @@ export class Builder extends React.Component {
         this.state = {
             loading: true,
         };
-        this.getModelData();
+        this.getModelData(props.params["modelCode"]);
     }
 
-    getModelData() {
-        this.modelService.getModelData(this.props.params["modelCode"])
+    componentWillReceiveProps(nextProps) {
+        if (this.props.params["modelCode"] !== nextProps.params["modelCode"]) {
+            this.getModelData(nextProps.params["modelCode"]);
+        }
+        this.props = nextProps;
+    }
+
+    getModelData(modelCode) {
+        this.modelService.getModelData(modelCode)
             .then(modelData => {
                 this.modelData = modelData;
                 CONFIG.setThemByName(this.modelData.color);

@@ -2,6 +2,8 @@ import React from "react";
 import {Row, Col} from "react-bootstrap";
 import SelectField from "material-ui/SelectField";
 import MenuItem from "material-ui/MenuItem";
+import * as colors from "material-ui/styles/colors";
+
 
 export class ParamSelect extends React.Component {
 
@@ -31,7 +33,7 @@ export class ParamSelect extends React.Component {
         return (
             <Row>
                 <Col xs={12}>
-                    <label>{this.data.label}</label>
+                    <label style={{color: colors.grey400}}>{this.data.label}</label>
                 </Col>
                 <Col xs={12}>
                     <SelectField ref="select"

@@ -8,7 +8,7 @@ export class ModelService {
         return new Promise((resolve, reject) => {
             ajax({
                 method: "GET",
-                url: url("model.json"),
+                url: url("models/" + modelCode + ".json"),
                 type: "jsonp",
                 contentType: "application/json; charset=utf-8",
             })

@@ -2,6 +2,7 @@ import React from "react";
 import {Row, Col} from "react-bootstrap";
 import Slider from "material-ui/Slider";
 import TextField from "material-ui/TextField";
+import * as colors from "material-ui/styles/colors";
 
 
 export class ParamNumber extends React.Component {
@@ -58,7 +59,7 @@ export class ParamNumber extends React.Component {
         return (
             <Row>
                 <Col xs={12}>
-                    <label>{this.data.label}</label>
+                    <label style={{color: colors.grey400}}>{this.data.label}</label>
                 </Col>
                 <Col xs={10}>
                     <Slider ref="slider"

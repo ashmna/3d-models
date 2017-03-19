@@ -1,6 +1,8 @@
 import React from "react";
 import {Row, Col} from "react-bootstrap";
 import TextField from "material-ui/TextField";
+import * as colors from "material-ui/styles/colors";
+
 
 export class ParamString extends React.Component {
 
@@ -31,7 +33,7 @@ export class ParamString extends React.Component {
         return (
             <Row>
                 <Col xs={12}>
-                    <label>{this.data.label}</label>
+                    <label style={{color: colors.grey400}}>{this.data.label}</label>
                 </Col>
                 <Col xs={12}>
                     <TextField ref="text"

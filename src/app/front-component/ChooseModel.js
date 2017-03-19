@@ -3,7 +3,9 @@ import {Row, Col} from "react-bootstrap";
 import RaisedButton from "material-ui/RaisedButton";
 import SwipeableViews from "react-swipeable-views";
 import {Link} from "react-router";
+import {autoPlay} from "react-swipeable-views-utils";
 
+const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 export class ChooseModel extends React.Component {
 
@@ -43,21 +45,30 @@ export class ChooseModel extends React.Component {
         return (
             <Row>
                 <Col xs={12}>
-                    <SwipeableViews onChangeIndex={this.handelChangeIndex.bind(this)}>
+                    <AutoPlaySwipeableViews onChangeIndex={this.handelChangeIndex.bind(this)}>
                         <div>
                             <img src="/images/model_0001.jpg" className="img-responsive center-block"/>
+                            <br/>
+                            <Link to="/0001" className="pull-right">
+                                <RaisedButton label="Customize"/>
+                            </Link>
                         </div>
-                        <div >
-                            slide n°2
+                        <div>
+                            <img src="/images/model_0001.jpg" className="img-responsive center-block"/>
+                            <br/>
+                            <Link to="/0002" className="pull-right">
+                                <RaisedButton label="Customize"/>
+                            </Link>
                         </div>
-                        <div >
-                            slide n°3
+                        <div>
+                            <img src="/images/model_0001.jpg" className="img-responsive center-block"/>
+                            <br/>
+                            <Link to="/0003" className="pull-right">
+                                <RaisedButton label="Customize"/>
+                            </Link>
                         </div>
+                    </AutoPlaySwipeableViews>
 
-                    </SwipeableViews>
-                    <Link to="/0001" className="pull-right">
-                        <RaisedButton label="Customize"/>
-                    </Link>
                 </Col>
             </Row>
         );
