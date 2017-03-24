@@ -1,6 +1,34 @@
 import React from "react";
-import THREE from "zetoff-three";
+import {
+    AmbientLight,
+    BufferAttribute,
+    BufferGeometry,
+    DefaultLoadingManager,
+    Face3,
+    FileLoader,
+    FlatShading,
+    Geometry,
+    Mesh,
+    MeshPhongMaterial,
+    PerspectiveCamera,
+    PointLight,
+    Scene,
+    Vector3,
+    WebGLRenderer
+} from "three";
+import TrackballControls from "three-trackballcontrols";
+import ThreeStlLoader from "three-stl-loader";
 import $ from "jquery";
+
+const STLLoader = ThreeStlLoader({
+    DefaultLoadingManager: DefaultLoadingManager,
+    XHRLoader: FileLoader,
+    BufferGeometry: BufferGeometry,
+    BufferAttribute: BufferAttribute,
+    Geometry: Geometry,
+    Vector3: Vector3,
+    Face3: Face3,
+});
 
 export class Viewer3D extends React.Component {
 
@@ -20,45 +48,43 @@ export class Viewer3D extends React.Component {
 
     componentDidMount() {
         const viewer3d = $("#viewer-3d");
-        const width = viewer3d.offsetWidth;
-        const height = viewer3d.offsetHeight;
+        const width = viewer3d[0].offsetWidth;
+        const height = window.innerHeight / 4 * 3; //viewer3d.offsetHeight;
 
 
         // if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
-        this.init(width, height);
-        this.animate();
-        this.cameraControls.addEventListener("change", this.threeRender.bind(this));
+        setTimeout(() => {
+            this.init(width, height);
+            this.animate();
+        }, 300);
+        window.addEventListener('resize', this.onWindowResize.bind(this));
     }
 
-
-    // loadStl(fileName) {
-    //     let loader = new THREE.STLLoader();
-    //     loader.load(fileName, (geometry) => {
-    //         if (this.lastLoadedMesh) {
-    //             this.scene.remove(this.lastLoadedMesh);
-    //         }
-    //         let material = new THREE.MeshPhongMaterial({color: 0x00FF00, specular: 0xFFFFFF, shininess: 0});
-    //         // let wireMaterial = new THREE.MeshBasicMaterial({color: 0xFFFFFF, wireframe: true});
-    //         let mesh = new THREE.Mesh(geometry, material);
-    //         // mesh.position.set( 0, - 0.25, 0.6 );
-    //         mesh.rotation.set(-Math.PI / 2, 0, 0);
-    //         mesh.scale.set(0.02, 0.02, 0.02);
-    //         mesh.castShadow = true;
-    //         mesh.receiveShadow = true;
-    //         this.scene.add(mesh);
-    //         this.lastLoadedMesh = mesh;
-    //     });
-    //     this.threeRender();
-    // }
-
     createMaterial(color) {
-        return new THREE.MeshPhongMaterial({
+        return new MeshPhongMaterial({
             color: color,
             specular: 0x222222,
             shininess: 15,
-            shading: THREE.FlatShading
+            shading: FlatShading
         });
     }
+
+    loadStl(fileName) {
+        let loader = new STLLoader();
+        loader.load(fileName, (geometry) => {
+            if (this.lastLoadedMesh) {
+                this.scene.remove(this.lastLoadedMesh);
+            }
+            let material = this.createMaterial(0x00FF00);
+            let mesh = new Mesh(geometry, material);
+            // mesh.position.set( 0, - 0.25, 0.6 );
+            // mesh.rotation.set(-Math.PI / 2, 0, 0);
+            this.scene.add(mesh);
+            this.lastLoadedMesh = mesh;
+        });
+        // this.threeRender();
+    }
+
 
     disableZoom() {
         this.trackballControls.noZoom = true;
@@ -88,21 +114,21 @@ export class Viewer3D extends React.Component {
 
         this.container = document.getElementById("viewer-3d");
 
-        this.scene = new THREE.Scene();
-        this.camera = new THREE.PerspectiveCamera(45, width/height, 0.1, 1e3);
+        this.scene = new Scene();
+        this.camera = new PerspectiveCamera(45, width / height, 0.1, 1e3);
         this.scene.add(this.camera);
         this.camera.position.set(50, 5, 275);
 
-        this.renderer = new THREE.WebGLRenderer({
+        this.renderer = new WebGLRenderer({
             // canvas: n.children("#canvasRenderer")[0],
             antialias: true,
             preserveDrawingBuffer: true,
             alpha: true,
         });
-        this.renderer.setSize(width, height)
+        this.renderer.setSize(width, height);
         this.renderer.setClearColor(0, 0);
 
-        this.trackballControls = new THREE.TrackballControls(this.camera, this.renderer.domElement);
+        this.trackballControls = new TrackballControls(this.camera, this.renderer.domElement);
         this.trackballControls.minDistance = 50;
         this.trackballControls.maxDistance = 500;
         this.trackballControls.rotateSpeed = 5;
@@ -112,11 +138,15 @@ export class Viewer3D extends React.Component {
         this.trackballControls.staticMoving = true;
         this.trackballControls.dynamicDampingFactor = 0.3;
 
-        this.scene.add(new THREE.AmbientLight(0x222222));
-        const pointLight = new THREE.PointLight(0xEEEEEE);
-        pointLight.position.set(100, 80, 0),
+        this.scene.add(new AmbientLight(0x222222));
+        const pointLight = new PointLight(0xEEEEEE);
+        pointLight.position.set(100, 80, 0);
         this.camera.add(pointLight);
 
+        this.loadStl('0103070090118.stl');
+
+        this.container.appendChild(this.renderer.domElement);
+        // this.renderer.domElement
 
         // this.camera.position.set(3, 0.15, 3);
         // this.cameraTarget = new THREE.Vector3(0, -0.25, 0);
@@ -185,7 +215,6 @@ export class Viewer3D extends React.Component {
         // this.renderer.shadowMap.enabled = true;
         // this.renderer.shadowMap.renderReverseSided = false;
         // this.container.appendChild(this.renderer.domElement);
-
 
 
         // CONTROLS
