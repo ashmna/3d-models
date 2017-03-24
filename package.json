@@ -8,11 +8,7 @@
   },
   "scripts": {
     "start": "webpack-dev-server --config webpack-dev-server.config.js --progress --inline --colors",
-    "build": "webpack --config webpack-production.config.js --progress --colors",
-    "postinstall": "npm run download-1 && npm run download-2 && npm run download-3",
-    "download-1": "wget https://threejs.org/build/three.min.js -O ./src/www/three.min.js",
-    "download-2": "wget https://raw.githubusercontent.com/mrdoob/three.js/master/examples/js/loaders/STLLoader.js -O ./src/www/STLLoader.js",
-    "download-3": "wget https://raw.githubusercontent.com/mrdoob/three.js/master/examples/js/controls/OrbitControls.js -O ./src/www/OrbitControls.js"
+    "build": "webpack --config webpack-production.config.js --progress --colors"
   },
   "private": true,
   "license": "ISC",
