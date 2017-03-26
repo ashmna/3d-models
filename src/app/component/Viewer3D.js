@@ -95,14 +95,14 @@ export class Viewer3D extends React.Component {
     }
 
     animate() {
-        const e = 0.01;
-        const x = this.camera.position.x;
-        const y = this.camera.position.y;
-        const z = this.camera.position.z;
-
-        this.camera.position.x = x * Math.cos(e) + z * Math.sin(e);
-        this.camera.position.z = z * Math.cos(e) - x * Math.sin(e);
-        this.camera.lookAt(this.scene.position);
+        // const e = 0.01;
+        // const x = this.camera.position.x;
+        // const y = this.camera.position.y;
+        // const z = this.camera.position.z;
+        //
+        // this.camera.position.x = x * Math.cos(e) + z * Math.sin(e);
+        // this.camera.position.z = z * Math.cos(e) - x * Math.sin(e);
+        // this.camera.lookAt(this.scene.position);
 
         requestAnimationFrame(this.animate.bind(this));
 
@@ -128,15 +128,15 @@ export class Viewer3D extends React.Component {
         this.renderer.setSize(width, height);
         this.renderer.setClearColor(0, 0);
 
-        this.trackballControls = new TrackballControls(this.camera, this.renderer.domElement);
-        this.trackballControls.minDistance = 50;
-        this.trackballControls.maxDistance = 500;
+        this.trackballControls = new TrackballControls(this.camera);
+        // this.trackballControls.minDistance = 50;
+        // this.trackballControls.maxDistance = 500;
         this.trackballControls.rotateSpeed = 5;
-        this.trackballControls.zoomSpeed = 5;
+        this.trackballControls.zoomSpeed = 0.1;
         this.trackballControls.noZoom = false;
         this.trackballControls.noPan = true;
-        this.trackballControls.staticMoving = true;
-        this.trackballControls.dynamicDampingFactor = 0.3;
+        // this.trackballControls.staticMoving = true;
+        // this.trackballControls.dynamicDampingFactor = 0.3;
 
         this.scene.add(new AmbientLight(0x222222));
         const pointLight = new PointLight(0xEEEEEE);
