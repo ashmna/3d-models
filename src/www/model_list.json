@@ -1,0 +1,30 @@
+[
+  {
+    "title": "GOLDEN RING",
+    "img": "/images/model_0001.jpg",
+    "code": "0001",
+    "color1": "#64B5F6",
+    "color2": "#1976D2"
+  },
+  {
+    "title": "RING",
+    "img": "/images/model_0001.jpg",
+    "code": "0002",
+    "color1": "#AED581",
+    "color2": "#689F38"
+  },
+  {
+    "title": "model 3",
+    "img": "/images/model_0001.jpg",
+    "code": "0003",
+    "color1": "#D39C55",
+    "color2": "#B24B18"
+  },
+  {
+    "title": "model 4",
+    "img": "/images/model_0001.jpg",
+    "code": "0004",
+    "color1": "#FFCD55",
+    "color2": "#A6920B"
+  }
+]

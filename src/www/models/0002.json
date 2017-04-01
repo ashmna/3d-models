@@ -1,7 +1,7 @@
 {
     "code": "0002",
     "name": "Ring",
-    "color": "lime",
+    "color": "lightGreen",
     "params": [
         {
             "name": "R_Top",

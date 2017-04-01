@@ -3,6 +3,7 @@ import * as React from "react";
 const style = {
     container: {
         position: "fixed",
+        zIndex: -1,
         bottom: "0",
         right: "0",
         left: "0",

@@ -5,6 +5,7 @@ import {Router, IndexRoute, Route, hashHistory} from "react-router";
 import {Front} from "./Front";
 import {Builder} from "./front-component/Builder";
 import {ChooseModel} from "./front-component/ChooseModel";
+import {ContactPage} from "./page/ContactPage";
 
 injectTapEventPlugin();
 
@@ -19,7 +20,8 @@ ReactDom.render(
     <Router history={hashHistory}>
         <Route path="/" component={Front}>
             <IndexRoute component={ChooseModel}/>
-            <Route path="/:modelCode" component={Builder}/>
+            <Route path="/contact" component={ContactPage}/>
+            <Route path="/model/:modelCode" component={Builder}/>
         </Route>
     </Router>,
     document.getElementById("app")

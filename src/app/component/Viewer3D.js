@@ -44,20 +44,19 @@ export class Viewer3D extends React.Component {
         // this.renderer;
         // this.cameraControls;
         this.lastLoadedMesh = null;
+        this.canvas = null;
     }
 
     componentDidMount() {
-        const viewer3d = $("#viewer-3d");
-        const width = viewer3d[0].offsetWidth;
-        const height = window.innerHeight / 4 * 3; //viewer3d.offsetHeight;
-
-
-        // if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
         setTimeout(() => {
+            const viewer3d = $("#viewer-3d");
+            const width = viewer3d[0].offsetWidth;
+            const height = window.innerHeight / 4 * 3; //viewer3d.offsetHeight;
+
             this.init(width, height);
             this.animate();
         }, 300);
-        window.addEventListener('resize', this.onWindowResize.bind(this));
+        // window.addEventListener('resize', this.onWindowResize.bind(this));
     }
 
     createMaterial(color) {
@@ -128,11 +127,11 @@ export class Viewer3D extends React.Component {
         this.renderer.setSize(width, height);
         this.renderer.setClearColor(0, 0);
 
-        this.trackballControls = new TrackballControls(this.camera);
+        this.trackballControls = new TrackballControls(this.camera, this.container);
         // this.trackballControls.minDistance = 50;
         // this.trackballControls.maxDistance = 500;
         this.trackballControls.rotateSpeed = 5;
-        this.trackballControls.zoomSpeed = 0.1;
+        this.trackballControls.zoomSpeed = 0.3;
         this.trackballControls.noZoom = false;
         this.trackballControls.noPan = true;
         // this.trackballControls.staticMoving = true;
@@ -143,10 +142,8 @@ export class Viewer3D extends React.Component {
         pointLight.position.set(100, 80, 0);
         this.camera.add(pointLight);
 
-        this.loadStl('0103070090118.stl');
-
         this.container.appendChild(this.renderer.domElement);
-        // this.renderer.domElement
+        this.canvas = this.renderer.domElement;
 
         // this.camera.position.set(3, 0.15, 3);
         // this.cameraTarget = new THREE.Vector3(0, -0.25, 0);
@@ -231,6 +228,10 @@ export class Viewer3D extends React.Component {
         // this.camera.updateProjectionMatrix();
         // this.renderer.setSize(width, height);
         // this.threeRender();
+    }
+
+    getImageData() {
+        return this.canvas.toDataURL('image/png', 1.0);
     }
 
 

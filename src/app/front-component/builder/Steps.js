@@ -7,6 +7,10 @@ import {StepContent} from "./StepContent";
 import {BayStepContent} from "./BayStepContent";
 import {Viewer3D} from "../../component/Viewer3D";
 import {ModelService} from "../../service/ModelService";
+import IconButton from "material-ui/IconButton";
+import PhotoCameraIcon from "material-ui/svg-icons/image/photo-camera";
+import * as colors from "material-ui/styles/colors";
+
 
 export class Steps extends React.Component {
 
@@ -16,6 +20,7 @@ export class Steps extends React.Component {
         this.state = {
             finished: false,
             stepIndex: 0,
+            photoCameraIconColor: colors.grey400,
         };
         this.modelParams = null;
         this.steps = [];
@@ -28,6 +33,7 @@ export class Steps extends React.Component {
             this.modelParams[param.name] = param;
         });
         this.steps = this.props.steps;
+        this.regenerateModel();
     }
 
     componentWillReceiveProps(nextProps) {
@@ -47,8 +53,9 @@ export class Steps extends React.Component {
         }
         this.setState({
             stepIndex: stepIndex + 1,
-            finished: stepIndex >= this.steps.length,
+            finished: stepIndex >= this.steps.length - 1,
         });
+        this.regenerateModel();
     }
 
     handlePrev() {
@@ -63,12 +70,11 @@ export class Steps extends React.Component {
 
     regenerateModel() {
         const res = {};
-        props.modelParams.forEach(param => res[param.name] = param.value);
+        this.props.modelParams.forEach(param => res[param.name] = param.value);
         this.modelService
-            .generateModel(this.props.params["modelCode"], res)
+            .generateModel(this.props.modelCode, res)
             .then(data => {
-                this.refs.viewer.loadStl('http://localhost:3003/' + data.file);
-                console.log('generateModel - data', data);
+                this.refs["viewer"].loadStl(CONFIG["SERVER_URL_ROOT"] + "/" + data.file);
             });
     }
 
@@ -77,6 +83,11 @@ export class Steps extends React.Component {
             return (<StepContent ref="stepContent" modelParams={this.modelParams} stepData={this.steps[stepIndex]}/>);
         }
         return (<BayStepContent ref="bayStepContent"/>);
+    }
+
+    getPhoto() {
+        const imageData = this.refs["viewer"].getImageData();
+        window.open(imageData, '_blank' );
     }
 
     render() {
@@ -99,6 +110,7 @@ export class Steps extends React.Component {
                 <Row>
                     <Col md={6}>
                         {this.getStepContent(stepIndex)}
+
                         <div style={{marginTop: 12}}>
                             <FlatButton
                                 label="Back"
@@ -106,15 +118,42 @@ export class Steps extends React.Component {
                                 onTouchTap={this.handlePrev.bind(this)}
                                 style={{marginRight: 12}}
                             />
-                            <RaisedButton
-                                label={stepIndex === this.steps.length ? "Finish" : "Next"}
-                                primary={true}
-                                onTouchTap={this.handleNext.bind(this)}
-                            />
+                            {stepIndex !== this.steps.length &&
+                                <FlatButton
+                                    label="Apply"
+                                    primary={true}
+                                    style={{marginRight: 12}}
+                                    onTouchTap={this.regenerateModel.bind(this)}
+                                />
+                            }
+                            {finished !== true &&
+                                <RaisedButton
+                                    label={stepIndex === this.steps.length ? "Finish" : "Next"}
+                                    primary={true}
+                                    onTouchTap={this.handleNext.bind(this)}
+                                />
+                            }
                         </div>
+
                     </Col>
                     <Col md={6}>
-                        <Viewer3D ref="viewer"/>
+                        <Row>
+                            <Col xs={12}>
+                                <Viewer3D ref="viewer"/>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col xs={12} className="text-center">
+                                <IconButton
+                                    iconStyle={{color: this.state.photoCameraIconColor}}
+                                    onTouchTap={this.getPhoto.bind(this)}
+                                    onMouseEnter={() => this.setState({photoCameraIconColor: colors.grey800})}
+                                    onMouseLeave={() => this.setState({photoCameraIconColor: colors.grey400})}
+                                >
+                                    <PhotoCameraIcon/>
+                                </IconButton>
+                            </Col>
+                        </Row>
                     </Col>
                 </Row>
             </div>
